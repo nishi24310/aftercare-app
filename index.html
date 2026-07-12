@@ -592,25 +592,6 @@ function importCaseJSON(input) {
   r.readAsText(file, 'UTF-8');
   input.value = '';
 }
-
-// ============================================================
-// メール通知
-// ============================================================
-function sendNotification(payload) {
-  if (!NOTIFY_WEBAPP_URL || NOTIFY_WEBAPP_URL.indexOf('http') !== 0) {
-    console.warn('NOTIFY_WEBAPP_URL が未設定のため、通知メールは送信されません。');
-    return;
-  }
-  fetch(NOTIFY_WEBAPP_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(payload)
-  }).catch(function (err) {
-    console.error('通知送信エラー:', err);
-    showToast('⚠️ 通知メールの送信に失敗しました(記録は保存されています)');
-  });
-}
-
 // ============================================================
 // 引継ぎPDF出力
 // ============================================================
